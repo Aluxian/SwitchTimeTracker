@@ -9,15 +9,19 @@
 /* Begin PBXBuildFile section */
 		79ACB2321E60CEBC005FE5ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACB2311E60CEBC005FE5ED /* AppDelegate.swift */; };
 		79ACB2341E60CEBC005FE5ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79ACB2331E60CEBC005FE5ED /* Assets.xcassets */; };
-		79ACB2371E60CEBC005FE5ED /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79ACB2351E60CEBC005FE5ED /* MainMenu.xib */; };
+		79ACB23F1E60DD61005FE5ED /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACB23E1E60DD61005FE5ED /* EventMonitor.swift */; };
+		79ACB2421E60DF0F005FE5ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79ACB2401E60DF0F005FE5ED /* Main.storyboard */; };
+		79ACB2441E60DF88005FE5ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACB2431E60DF88005FE5ED /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		79ACB22E1E60CEBC005FE5ED /* Switch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Switch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79ACB2311E60CEBC005FE5ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79ACB2331E60CEBC005FE5ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		79ACB2361E60CEBC005FE5ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		79ACB2381E60CEBC005FE5ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79ACB23E1E60DD61005FE5ED /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		79ACB2411E60DF0F005FE5ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		79ACB2431E60DF88005FE5ED /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +56,10 @@
 			children = (
 				79ACB2311E60CEBC005FE5ED /* AppDelegate.swift */,
 				79ACB2331E60CEBC005FE5ED /* Assets.xcassets */,
-				79ACB2351E60CEBC005FE5ED /* MainMenu.xib */,
 				79ACB2381E60CEBC005FE5ED /* Info.plist */,
+				79ACB23E1E60DD61005FE5ED /* EventMonitor.swift */,
+				79ACB2401E60DF0F005FE5ED /* Main.storyboard */,
+				79ACB2431E60DF88005FE5ED /* ViewController.swift */,
 			);
 			path = Switch;
 			sourceTree = "<group>";
@@ -117,8 +123,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79ACB2421E60DF0F005FE5ED /* Main.storyboard in Resources */,
 				79ACB2341E60CEBC005FE5ED /* Assets.xcassets in Resources */,
-				79ACB2371E60CEBC005FE5ED /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,19 +135,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79ACB2441E60DF88005FE5ED /* ViewController.swift in Sources */,
 				79ACB2321E60CEBC005FE5ED /* AppDelegate.swift in Sources */,
+				79ACB23F1E60DD61005FE5ED /* EventMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		79ACB2351E60CEBC005FE5ED /* MainMenu.xib */ = {
+		79ACB2401E60DF0F005FE5ED /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				79ACB2361E60CEBC005FE5ED /* Base */,
+				79ACB2411E60DF0F005FE5ED /* Base */,
 			);
-			name = MainMenu.xib;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -282,6 +290,7 @@
 				79ACB23D1E60CEBC005FE5ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
