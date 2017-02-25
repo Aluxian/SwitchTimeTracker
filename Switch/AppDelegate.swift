@@ -20,6 +20,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.image = NSImage(named: "MenuBarIcon")
         statusItem.button?.action = #selector(togglePopover(_:))
         
+//        let mainViewController = NSStoryboard(name: "Main", bundle: nil)
+//            .instantiateController(withIdentifier: "ViewControllerId") as! ViewController
+        
         // listen for clicks outside the popover (to close it)
 //        outsideClickEventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [unowned self] event in
 //            if self.popover.isShown {
