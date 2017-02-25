@@ -10,19 +10,16 @@ import Cocoa
 
 class ViewController: NSViewController {
     
+    @IBOutlet weak var taskInput: NSTextField!
+    @IBOutlet weak var timeLabel: NSTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
     
-    override var representedObject: Any? {
-        didSet {
-            // Update the view, if already loaded.
-        }
-    }
-    
-    @IBAction func closeButtonAction(_ sender: NSButton) {
-        NSApp.terminate(self)
+    @IBAction func submitBtn(_ sender: NSButton) {
+        print("task:", taskInput.stringValue)
     }
     
 }

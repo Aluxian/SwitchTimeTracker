@@ -11,7 +11,6 @@
 		79ACB2341E60CEBC005FE5ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79ACB2331E60CEBC005FE5ED /* Assets.xcassets */; };
 		79ACB23F1E60DD61005FE5ED /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACB23E1E60DD61005FE5ED /* EventMonitor.swift */; };
 		79ACB2421E60DF0F005FE5ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79ACB2401E60DF0F005FE5ED /* Main.storyboard */; };
-		79ACB2441E60DF88005FE5ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACB2431E60DF88005FE5ED /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,7 +20,6 @@
 		79ACB2381E60CEBC005FE5ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79ACB23E1E60DD61005FE5ED /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		79ACB2411E60DF0F005FE5ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		79ACB2431E60DF88005FE5ED /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +57,6 @@
 				79ACB2381E60CEBC005FE5ED /* Info.plist */,
 				79ACB23E1E60DD61005FE5ED /* EventMonitor.swift */,
 				79ACB2401E60DF0F005FE5ED /* Main.storyboard */,
-				79ACB2431E60DF88005FE5ED /* ViewController.swift */,
 			);
 			path = Switch;
 			sourceTree = "<group>";
@@ -135,7 +132,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79ACB2441E60DF88005FE5ED /* ViewController.swift in Sources */,
 				79ACB2321E60CEBC005FE5ED /* AppDelegate.swift in Sources */,
 				79ACB23F1E60DD61005FE5ED /* EventMonitor.swift in Sources */,
 			);

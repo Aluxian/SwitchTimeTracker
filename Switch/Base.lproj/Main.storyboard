@@ -6,126 +6,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Application-->
-        <scene sceneID="JPo-4y-FX3">
+        <!--Window Controller-->
+        <scene sceneID="j77-Yx-VMt">
             <objects>
-                <application id="hnw-xV-0zn" sceneMemberID="viewController">
-                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
-                        <items>
-                            <menuItem title="Switch" id="1Xt-HY-uBw">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Switch" systemMenu="apple" id="uQy-DD-JDr">
-                                    <items>
-                                        <menuItem title="About Switch" id="5kV-Vb-QxS">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
-                                        <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
-                                        <menuItem title="Services" id="NMo-om-nkz">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide Popup" keyEquivalent="h" id="Olw-nP-bQN">
-                                            <connections>
-                                                <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="VT4-aY-XCT"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Show All" id="Kd2-mp-pUS">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="Dhg-Le-xox"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit Popup" keyEquivalent="q" id="4sb-4s-VLi">
-                                            <connections>
-                                                <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem title="Window" id="aUF-d1-5bR">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
-                                    <items>
-                                        <menuItem title="Minimize" keyEquivalent="m" id="OY7-WF-poV">
-                                            <connections>
-                                                <action selector="performMiniaturize:" target="Ady-hI-5gd" id="VwT-WD-YPe"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Zoom" id="R4o-n2-Eq4">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="performZoom:" target="Ady-hI-5gd" id="DIl-cC-cCs"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
-                                        <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="arrangeInFront:" target="Ady-hI-5gd" id="DRN-fu-gQh"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                        </items>
-                    </menu>
+                <windowController id="Ljo-Nv-d01" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Her-Rv-Xw4">
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="249" width="320" height="320"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+                    </window>
                     <connections>
-                        <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
+                        <segue destination="HSC-ga-Yon" kind="relationship" relationship="window.shadowedContentViewController" id="rdh-Q0-gJ0"/>
                     </connections>
-                </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Switch" customModuleProvider="target"/>
-                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                </windowController>
+                <customObject id="4xd-QN-low" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="-286" y="-64"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="hIz-AP-VOD">
+        <scene sceneID="FpN-jt-Xt2">
             <objects>
-                <viewController storyboardIdentifier="ViewControllerId" id="XfG-lQ-9wD" customClass="ViewController" customModule="Switch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
+                <viewController id="HSC-ga-Yon" sceneMemberID="viewController">
+                    <view key="view" id="Dc3-AO-H8g">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lZ2-wa-fRr">
-                                <rect key="frame" x="188" y="123" width="104" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Popup" id="AhH-2F-5Wr">
-                                    <font key="font" metaFont="system" size="17"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="epW-W3-lUk">
-                                <rect key="frame" x="401" y="235" width="75" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QPq-ff-gA2">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="closeButtonAction:" target="XfG-lQ-9wD" id="TGO-3t-fwW"/>
-                                </connections>
-                            </button>
-                        </subviews>
                     </view>
                 </viewController>
-                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="6e6-zz-dbl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="249"/>
+            <point key="canvasLocation" x="367" y="-64"/>
         </scene>
     </scenes>
 </document>
