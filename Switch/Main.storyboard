@@ -9,12 +9,14 @@
         <!--Window Controller-->
         <scene sceneID="AHn-jR-LTA">
             <objects>
-                <windowController id="lKQ-DO-gQE" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="WinCtrl" id="lKQ-DO-gQE" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="xFg-tF-DIf">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="249" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+                        <connections>
+                            <binding destination="lKQ-DO-gQE" name="representedFilename" keyPath="self.window" id="a3E-tl-oYj"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="tR1-lC-YF6" kind="relationship" relationship="window.shadowedContentViewController" id="DcQ-4m-qtC"/>
@@ -119,7 +121,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Switch" customModuleProvider="target"/>
                 <customObject id="vhI-ea-atd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-253" y="-240"/>
