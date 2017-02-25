@@ -25,9 +25,14 @@ class PopoverViewController: NSViewController {
     @IBOutlet weak var tasksTableView: NSTableView!
     @IBOutlet weak var headerAddTaskBtn: NSButton!
     
-    var prevSelectedRow: Int = -1
+    let popoverTopOffset: CGFloat = 31
+    let popoverItemHeight: CGFloat = 51
     
-    let entries = [
+    var prevSelectedRow: Int = -1
+    var isInAddTaskMode: Bool = false
+    
+    var entries = [
+        Entry(name: "Nothing", startedAt: NSDate(), color: NSColor(red: 0.58, green: 0.72, blue: 0.75, alpha: 1)),
         Entry(name: "Programming", startedAt: NSDate(), color: NSColor(red: 0.58, green: 0.72, blue: 0.75, alpha: 1)),
         Entry(name: "Studying", startedAt: NSDate(), color: NSColor(red: 0.57, green: 0.77, blue: 0.64, alpha: 1)),
         Entry(name: "Reading", startedAt: NSDate(), color: NSColor(red: 0.54, green: 0.41, blue: 0.53, alpha: 1))
@@ -40,16 +45,15 @@ class PopoverViewController: NSViewController {
         tasksTableView.delegate = self
         tasksTableView.dataSource = self
         
-        // resize the popover frame
-        let popoverTopOffset: CGFloat = 31
-        let popoverItemHeight: CGFloat = 51
-        self.view.frame = CGRect(x: self.view.frame.origin.x,
-                                 y: self.view.frame.origin.y,
-                                 width: self.view.frame.width,
-                                 height: popoverTopOffset + CGFloat(entries.count) * popoverItemHeight)
+        // resize the popover window
+        self.view.setFrameSize(NSSize(width: self.view.frame.width,
+                                      height: popoverTopOffset + CGFloat(entries.count) * popoverItemHeight))
         
         // bind header buttons
         headerAddTaskBtn.action = #selector(onHeaderAddTaskClick(sender:))
+        
+        // ensure the table view is focused first
+        headerAddTaskBtn.refusesFirstResponder = true
         
         // register custom cell views
         tasksTableView.register(NSNib(nibNamed: "TaskCell", bundle: nil), forIdentifier: "TaskCell")
@@ -60,6 +64,16 @@ class PopoverViewController: NSViewController {
         print("deleted" + String(index))
     }
     
+    func createNewTask(name: String) {
+        isInAddTaskMode = false
+        headerAddTaskBtn.isEnabled = true
+        tasksTableView.reloadData()
+        entries.append(Entry(name: name, startedAt: NSDate(), color: NSColor(white: 0.5, alpha: 1)))
+        tasksTableView.reloadData()
+        self.view.setFrameSize(NSSize(width: self.view.frame.width,
+                                      height: popoverTopOffset + CGFloat(entries.count) * popoverItemHeight))
+    }
+    
     func handleSwipeAction(action: NSTableViewRowAction, index: Int) {
         if action.title == "Delete" {
             deleteEntryAt(index: index)
@@ -67,14 +81,11 @@ class PopoverViewController: NSViewController {
     }
     
     func onHeaderAddTaskClick(sender: Any) {
-        //        self.view.frame = CGRect(x: 0, y: 0,
-        //                                 width: self.view.frame.width, height: self.view.frame.height + 51)
-        //        tableView.frame = CGRect(x: 0, y: 0,
-        //                                 width: tableView.frame.width, height: tableView.frame.height + 51)
-        //        numRows += 1
-        //        inAddMore = true
-        //        tasksTableView.reloadData(forRowIndexes: IndexSet([numRows-1]),
-        //                             columnIndexes: IndexSet([0]))
+        isInAddTaskMode = true;
+        headerAddTaskBtn.isEnabled = false
+        tasksTableView.reloadData()
+        self.view.setFrameSize(NSSize(width: self.view.frame.width,
+                                      height: self.view.frame.height + popoverItemHeight))
     }
     
 }
@@ -82,6 +93,9 @@ class PopoverViewController: NSViewController {
 extension PopoverViewController: NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
+        if isInAddTaskMode {
+            return entries.count + 1
+        }
         return entries.count
     }
     
@@ -90,17 +104,20 @@ extension PopoverViewController: NSTableViewDataSource {
 extension PopoverViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        //        if inAddMore && row == (numRows - 1) {
-        //            let newTaskView = tableView.make(withIdentifier: "NewTaskCell", owner: nil) as? NewTaskCellView
-        //            return newTaskView
-        //        }
+        // set the NewTaskCell view
+        if isInAddTaskMode && row == entries.count {
+            if let newTaskCellView = tableView.make(withIdentifier: "NewTaskCell", owner: nil) as? NewTaskCellView {
+                newTaskCellView.addTaskAction = createNewTask
+                return newTaskCellView
+            }
+        }
         
         // set the TaskCell view
         if let taskCellView = tableView.make(withIdentifier: "TaskCell", owner: nil) as? TaskCellView {
             taskCellView.taskDurationField.alphaValue = 0
             taskCellView.taskNameField.stringValue = entries[row].name
             taskCellView.taskColorBox.fillColor = entries[row].color
-            taskCellView.startedAt = NSDate() // TODO entries[row].startedAt
+            taskCellView.startedAt = NSDate()
             taskCellView.selected = row == tableView.selectedRow
             return taskCellView
         }

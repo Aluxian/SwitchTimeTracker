@@ -22,9 +22,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.action = #selector(togglePopover(_:))
         
         // create the popover
-        popover = NSPopover()
-        popover.contentViewController = NSStoryboard(name: "Main", bundle: nil)
+        let popoverViewController = NSStoryboard(name: "Main", bundle: nil)
             .instantiateController(withIdentifier: "MainPopover") as! PopoverViewController
+        popover = NSPopover()
+        popover.contentViewController = popoverViewController
         
         // listen for clicks outside the popover (to close it)
         outsideClickEventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [unowned self] event in

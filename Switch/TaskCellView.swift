@@ -29,7 +29,10 @@ class TaskCellView: NSTableCellView {
         }
     }
     
-    // TODO: animate
+    // used to calculate the delta for animations
+    var selectionHintDelta: CGFloat = -10
+    var deselectionHintDelta: CGFloat = 10
+    
     func enable() {
         timer?.invalidate()
         timer = nil
@@ -39,14 +42,20 @@ class TaskCellView: NSTableCellView {
                                      userInfo: nil,
                                      repeats: true)
         onTick()
-        taskDurationField.alphaValue = 1
+        taskNameField.font = NSFont.boldSystemFont(ofSize: taskNameField.font?.pointSize ?? 0)
+        NSAnimationContext.runAnimationGroup({ (context) -> Void in
+            taskDurationField.animator().alphaValue = 1
+        }, completionHandler: {})
     }
     
     func disable() {
         timer?.invalidate()
         timer = nil
-        taskDurationField.alphaValue = 0
         startedAt = nil
+        taskNameField.font = NSFont.systemFont(ofSize: taskNameField.font?.pointSize ?? 0)
+        NSAnimationContext.runAnimationGroup({ (context) -> Void in
+            taskDurationField.animator().alphaValue = 0
+        }, completionHandler: {})
     }
     
     override func prepareForReuse() {
