@@ -17,16 +17,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // create the menu bar icon
-        statusItem = NSStatusBar.system().statusItem(withLength: -2)
+        statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
         statusItem.button?.image = NSImage(named: "MenuBarIcon")
         statusItem.button?.action = #selector(togglePopover(_:))
         
         // create the popover
         popover = NSPopover()
         popover.contentViewController = NSStoryboard(name: "Main", bundle: nil)
-            .instantiateController(withIdentifier: "PopoverID") as! ViewController
-
-        
+            .instantiateController(withIdentifier: "PopoverID") as! PopoverViewController
         
         // listen for clicks outside the popover (to close it)
         outsideClickEventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [unowned self] event in

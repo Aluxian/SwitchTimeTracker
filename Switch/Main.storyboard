@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Popover View Controller-->
         <scene sceneID="irx-8l-D2i">
             <objects>
-                <viewController storyboardIdentifier="PopoverID" id="KII-XX-Ewm" customClass="ViewController" customModule="Switch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopoverID" id="KII-XX-Ewm" customClass="PopoverViewController" customModule="Switch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="dWF-1s-W3e" customClass="PopoverView" customModule="Switch" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="488"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -108,9 +108,18 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LmG-ZT-b8y">
+                                <rect key="frame" x="281" y="463" width="19" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="recessed" bezelStyle="recessed" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="G0a-tj-YaJ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" metaFont="systemBold" size="12"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="addBtn" destination="LmG-ZT-b8y" id="Aqb-hv-bSa"/>
                         <outlet property="tableView" destination="A2R-eq-Pff" id="uGD-4d-yrl"/>
                     </connections>
                 </viewController>
@@ -206,4 +215,7 @@
             <point key="canvasLocation" x="-124" y="7"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+    </resources>
 </document>
