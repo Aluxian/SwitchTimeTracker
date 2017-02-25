@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7951C7B51E6124D400BF3E71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951C7B41E6124D400BF3E71 /* AppDelegate.swift */; };
+		797DC7551E61509600EF2864 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DC7541E61509600EF2864 /* PopoverView.swift */; };
 		79ACB2341E60CEBC005FE5ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79ACB2331E60CEBC005FE5ED /* Assets.xcassets */; };
 		79ACB23F1E60DD61005FE5ED /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACB23E1E60DD61005FE5ED /* EventMonitor.swift */; };
 		79F88D971E61105100CB2820 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F88D961E61105100CB2820 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		7951C7B41E6124D400BF3E71 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		797DC7541E61509600EF2864 /* PopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
 		79ACB22E1E60CEBC005FE5ED /* Switch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Switch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79ACB2331E60CEBC005FE5ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79ACB2381E60CEBC005FE5ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			children = (
 				7951C7B41E6124D400BF3E71 /* AppDelegate.swift */,
 				79F88D961E61105100CB2820 /* ViewController.swift */,
+				797DC7541E61509600EF2864 /* PopoverView.swift */,
 				79ACB23E1E60DD61005FE5ED /* EventMonitor.swift */,
 				79F88DB31E6114F700CB2820 /* Main.storyboard */,
 				79ACB2331E60CEBC005FE5ED /* Assets.xcassets */,
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7951C7B51E6124D400BF3E71 /* AppDelegate.swift in Sources */,
+				797DC7551E61509600EF2864 /* PopoverView.swift in Sources */,
 				79F88D971E61105100CB2820 /* ViewController.swift in Sources */,
 				79ACB23F1E60DD61005FE5ED /* EventMonitor.swift in Sources */,
 			);

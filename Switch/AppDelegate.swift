@@ -24,7 +24,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // create the popover
         popover = NSPopover()
         popover.contentViewController = NSStoryboard(name: "Main", bundle: nil)
-            .instantiateController(withIdentifier: "PopoverCtrl") as! ViewController
+            .instantiateController(withIdentifier: "PopoverID") as! ViewController
+
+        
         
         // listen for clicks outside the popover (to close it)
         outsideClickEventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [unowned self] event in
@@ -48,7 +50,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func showPopover(_ sender: AnyObject?) {
         if let button = statusItem.button {
+            NSRunningApplication.current().activate(options: NSApplicationActivationOptions.activateIgnoringOtherApps)
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+            popover.becomeFirstResponder()
         }
         outsideClickEventMonitor.start()
     }
