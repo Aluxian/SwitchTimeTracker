@@ -15,7 +15,7 @@ class PopoverView: NSView {
             return
         }
         
-        // replace background with a white one
+        // make the background completely white
         let backgroundView = NSView(frame: frameView.bounds)
         backgroundView.wantsLayer = true
         backgroundView.layer?.backgroundColor = .white

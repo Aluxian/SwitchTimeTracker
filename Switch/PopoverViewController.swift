@@ -8,15 +8,30 @@
 
 import Cocoa
 
+class Entry {
+    var name: String
+    var startedAt: NSDate
+    var color: NSColor
+    
+    init(name: String, startedAt: NSDate, color: NSColor) {
+        self.name = name
+        self.startedAt = startedAt
+        self.color = color
+    }
+}
+
 class PopoverViewController: NSViewController {
     
     @IBOutlet weak var tasksTableView: NSTableView!
-    @IBOutlet weak var showAddTaskRowBtn: NSButton!
+    @IBOutlet weak var headerAddTaskBtn: NSButton!
     
-    var prevSelIndex = -1
-    var currentSelIndex = 0
-    var numRows = 8
-    var inAddMore = false
+    var prevSelectedRow: Int = -1
+    
+    let entries = [
+        Entry(name: "Programming", startedAt: NSDate(), color: NSColor(red: 0.58, green: 0.72, blue: 0.75, alpha: 1)),
+        Entry(name: "Studying", startedAt: NSDate(), color: NSColor(red: 0.57, green: 0.77, blue: 0.64, alpha: 1)),
+        Entry(name: "Reading", startedAt: NSDate(), color: NSColor(red: 0.54, green: 0.41, blue: 0.53, alpha: 1))
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,27 +40,41 @@ class PopoverViewController: NSViewController {
         tasksTableView.delegate = self
         tasksTableView.dataSource = self
         
-        self.view.frame = CGRect(x: 0, y: 0, width: 320, height: 30 + 8 * 51 - 1)
-        tasksTableView.frame = CGRect(x: 0, y: 0, width: 320, height: 8 * 51)
+        // resize the popover frame
+        let popoverTopOffset: CGFloat = 31
+        let popoverItemHeight: CGFloat = 51
+        self.view.frame = CGRect(x: self.view.frame.origin.x,
+                                 y: self.view.frame.origin.y,
+                                 width: self.view.frame.width,
+                                 height: popoverTopOffset + CGFloat(entries.count) * popoverItemHeight)
         
-        showAddTaskRowBtn.action = #selector(onAddClick(sender:))
+        // bind header buttons
+        headerAddTaskBtn.action = #selector(onHeaderAddTaskClick(sender:))
+        
+        // register custom cell views
+        tasksTableView.register(NSNib(nibNamed: "TaskCell", bundle: nil), forIdentifier: "TaskCell")
+        tasksTableView.register(NSNib(nibNamed: "NewTaskCell", bundle: nil), forIdentifier: "NewTaskCell")
     }
     
-    override var representedObject: Any? {
-        didSet {
-            // Update the view, if already loaded.
+    func deleteEntryAt(index: Int) {
+        print("deleted" + String(index))
+    }
+    
+    func handleSwipeAction(action: NSTableViewRowAction, index: Int) {
+        if action.title == "Delete" {
+            deleteEntryAt(index: index)
         }
     }
     
-    func onAddClick(sender: Any) {
-        self.view.frame = CGRect(x: 0, y: 0,
-                                 width: self.view.frame.width, height: self.view.frame.height + 51)
-//        tableView.frame = CGRect(x: 0, y: 0,
-//                                 width: tableView.frame.width, height: tableView.frame.height + 51)
-        numRows += 1
-        inAddMore = true
-        tasksTableView.reloadData(forRowIndexes: IndexSet([numRows-1]),
-                             columnIndexes: IndexSet([0]))
+    func onHeaderAddTaskClick(sender: Any) {
+        //        self.view.frame = CGRect(x: 0, y: 0,
+        //                                 width: self.view.frame.width, height: self.view.frame.height + 51)
+        //        tableView.frame = CGRect(x: 0, y: 0,
+        //                                 width: tableView.frame.width, height: tableView.frame.height + 51)
+        //        numRows += 1
+        //        inAddMore = true
+        //        tasksTableView.reloadData(forRowIndexes: IndexSet([numRows-1]),
+        //                             columnIndexes: IndexSet([0]))
     }
     
 }
@@ -53,7 +82,7 @@ class PopoverViewController: NSViewController {
 extension PopoverViewController: NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return numRows
+        return entries.count
     }
     
 }
@@ -61,91 +90,41 @@ extension PopoverViewController: NSTableViewDataSource {
 extension PopoverViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        if inAddMore && row == (numRows - 1) {
-            tableView.register(NSNib(nibNamed: "NewTaskView", bundle: nil), forIdentifier: "newTaskId")
-            let newTaskView = tableView.make(withIdentifier: "newTaskId", owner: nil) as? NewTaskCellView
-            newTaskField = newTaskView?.subviews[0] as! NSTextField
-            newTaskField?.stringValue = "ok"
-            (newTaskView?.subviews[1] as! NSButton).action = #selector(onAddClicked(sender:))
-            return newTaskView
-        }
+        //        if inAddMore && row == (numRows - 1) {
+        //            let newTaskView = tableView.make(withIdentifier: "NewTaskCell", owner: nil) as? NewTaskCellView
+        //            return newTaskView
+        //        }
         
-        if let boxView = tableView.make(withIdentifier: "TaskNameLabel", owner: nil) as? NSBox {
-            (boxView.subviews[0].subviews[0] as! NSTextField).stringValue = "Studying"
-            if tableView.selectedRow == row {
-                (boxView.subviews[0].subviews[1] as! NSTextField).stringValue = "0:00"
-                //                setTimeout(delay: 1) {
-                //                    var delta: CGFloat = 30
-                //
-                //                    if self.currentSelIndex > self.prevSelIndex {
-                //                        delta = -30
-                //                    }
-                //
-                //                    (boxView.subviews[0].subviews[1] as! NSTextField).stringValue = "0:00"
-                //                    let tv = boxView.subviews[0].subviews[1]
-                //                    tv.frame = CGRect(x: tv.frame.origin.x, y: tv.frame.origin.y - delta,
-                //                                      width: tv.frame.width, height: tv.frame.height)
-                //                    tv.alphaValue = 0
-                //
-                //                    NSAnimationContext.runAnimationGroup({ (context) -> Void in
-                //                        context.duration = 1
-                //                        let tv = boxView.subviews[0].subviews[1].animator()
-                //                        tv.frame = CGRect(x: tv.frame.origin.x, y: tv.frame.origin.y + delta,
-                //                                          width: tv.frame.width, height: tv.frame.height)
-                //                        tv.alphaValue = 1
-                //                    }, completionHandler: {})
-                //                }
-            } else {
-                (boxView.subviews[0].subviews[1] as! NSTextField).stringValue = ""
-                //                var delta: CGFloat = 30
-                //
-                //                if currentSelIndex > prevSelIndex {
-                //                    delta = -30
-                //                }
-                //
-                //                NSAnimationContext.runAnimationGroup({ (context) -> Void in
-                //                    context.duration = 0.5
-                //                    let tv = boxView.subviews[0].subviews[1].animator()
-                //                    tv.frame = CGRect(x: tv.frame.origin.x, y: tv.frame.origin.y + delta,
-                //                                      width: tv.frame.width, height: tv.frame.height)
-                //                    tv.alphaValue = 0
-                //                }, completionHandler: {
-                //                    (boxView.subviews[0].subviews[1] as! NSTextField).stringValue = ""
-                //                    let tv = boxView.subviews[0].subviews[1]
-                //                    tv.frame = CGRect(x: tv.frame.origin.x, y: tv.frame.origin.y - delta,
-                //                                      width: tv.frame.width, height: tv.frame.height)
-                //                    tv.alphaValue = 1
-                //                })
-            }
-            return boxView
+        // set the TaskCell view
+        if let taskCellView = tableView.make(withIdentifier: "TaskCell", owner: nil) as? TaskCellView {
+            taskCellView.taskDurationField.alphaValue = 0
+            taskCellView.taskNameField.stringValue = entries[row].name
+            taskCellView.taskColorBox.fillColor = entries[row].color
+            taskCellView.startedAt = NSDate() // TODO entries[row].startedAt
+            taskCellView.selected = row == tableView.selectedRow
+            return taskCellView
         }
         
         return nil
     }
     
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
+        // add item swipe actions
         return [
-            NSTableViewRowAction(style: NSTableViewRowActionStyle.destructive,
-                                 title: "Delete",
-                                 handler: {
-                                    (action, indexPath) in
-                                    print("deleted" + String(indexPath))
-            })
+            NSTableViewRowAction(style: NSTableViewRowActionStyle.destructive, title: "Delete", handler: handleSwipeAction)
         ]
     }
     
-    func setTimeout(delay:TimeInterval, block: @escaping ()->Void) {
-        Timer.scheduledTimer(timeInterval: delay, target: BlockOperation(block: block), selector: #selector(Operation.main), userInfo: nil, repeats: false)
+    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        // store this so its row can be unselected
+        prevSelectedRow = tableView.selectedRow
+        return true
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-        let tableView = notification.object as! NSTableView
-        prevSelIndex = currentSelIndex
-        currentSelIndex = tableView.selectedRow
-        tableView.reloadData(forRowIndexes: IndexSet([currentSelIndex]),
-                             columnIndexes: IndexSet([0]))
-        if prevSelIndex != -1 {
-            tableView.reloadData(forRowIndexes: IndexSet([prevSelIndex]),
+        // transition selection between two rows
+        if let tableView = notification.object as? NSTableView {
+            tableView.reloadData(forRowIndexes: IndexSet([prevSelectedRow, tableView.selectedRow]),
                                  columnIndexes: IndexSet([0]))
         }
     }

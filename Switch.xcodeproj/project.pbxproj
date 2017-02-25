@@ -11,6 +11,8 @@
 		797DC7551E61509600EF2864 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DC7541E61509600EF2864 /* PopoverView.swift */; };
 		797DC7571E6196EF00EF2864 /* NewTaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 797DC7561E6196EF00EF2864 /* NewTaskCell.xib */; };
 		797DC7591E619CCF00EF2864 /* NewTaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DC7581E619CCF00EF2864 /* NewTaskCellView.swift */; };
+		797DC75B1E61A02600EF2864 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 797DC75A1E61A02600EF2864 /* TaskCell.xib */; };
+		797DC75D1E61A05B00EF2864 /* TaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DC75C1E61A05B00EF2864 /* TaskCellView.swift */; };
 		79ACB2341E60CEBC005FE5ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79ACB2331E60CEBC005FE5ED /* Assets.xcassets */; };
 		79ACB23F1E60DD61005FE5ED /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACB23E1E60DD61005FE5ED /* EventMonitor.swift */; };
 		79F88D971E61105100CB2820 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F88D961E61105100CB2820 /* PopoverViewController.swift */; };
@@ -22,6 +24,8 @@
 		797DC7541E61509600EF2864 /* PopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
 		797DC7561E6196EF00EF2864 /* NewTaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTaskCell.xib; sourceTree = "<group>"; };
 		797DC7581E619CCF00EF2864 /* NewTaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskCellView.swift; sourceTree = "<group>"; };
+		797DC75A1E61A02600EF2864 /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
+		797DC75C1E61A05B00EF2864 /* TaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellView.swift; sourceTree = "<group>"; };
 		79ACB22E1E60CEBC005FE5ED /* Switch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Switch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79ACB2331E60CEBC005FE5ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79ACB2381E60CEBC005FE5ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 				79ACB2381E60CEBC005FE5ED /* Info.plist */,
 				797DC7561E6196EF00EF2864 /* NewTaskCell.xib */,
 				797DC7581E619CCF00EF2864 /* NewTaskCellView.swift */,
+				797DC75A1E61A02600EF2864 /* TaskCell.xib */,
+				797DC75C1E61A05B00EF2864 /* TaskCellView.swift */,
 			);
 			path = Switch;
 			sourceTree = "<group>";
@@ -132,6 +138,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				797DC75B1E61A02600EF2864 /* TaskCell.xib in Resources */,
 				79ACB2341E60CEBC005FE5ED /* Assets.xcassets in Resources */,
 				79F88DB41E6114F700CB2820 /* Main.storyboard in Resources */,
 				797DC7571E6196EF00EF2864 /* NewTaskCell.xib in Resources */,
@@ -150,6 +157,7 @@
 				79F88D971E61105100CB2820 /* PopoverViewController.swift in Sources */,
 				79ACB23F1E60DD61005FE5ED /* EventMonitor.swift in Sources */,
 				797DC7591E619CCF00EF2864 /* NewTaskCellView.swift in Sources */,
+				797DC75D1E61A05B00EF2864 /* TaskCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

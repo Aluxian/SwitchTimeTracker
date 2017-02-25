@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField identifier="textField" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubl-is-YLW">
+                <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubl-is-YLW">
                     <rect key="frame" x="20" y="14" width="219" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="eKh-CD-kaN">
@@ -22,7 +22,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button identifier="addBtn" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fah-r1-OsZ">
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fah-r1-OsZ">
                     <rect key="frame" x="241" y="7" width="65" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bVq-ad-MEf">
@@ -32,8 +32,8 @@
                 </button>
             </subviews>
             <connections>
-                <outlet property="addTaskBtn" destination="Fah-r1-OsZ" id="Xd2-Ua-0zi"/>
-                <outlet property="taskTextField" destination="Ubl-is-YLW" id="tRp-99-bxQ"/>
+                <outlet property="addTaskBtn" destination="Fah-r1-OsZ" id="Ce7-eC-kWI"/>
+                <outlet property="taskTextField" destination="Ubl-is-YLW" id="SwF-cc-76i"/>
             </connections>
             <point key="canvasLocation" x="139" y="57"/>
         </customView>
