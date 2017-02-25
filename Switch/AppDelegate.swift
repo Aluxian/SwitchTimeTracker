@@ -1,8 +1,8 @@
 //
-//  AppDelegate.swift
+//  MyAppDelegate.swift
 //  Switch
 //
-//  Created by Alexandru Rosianu on 24/02/2017.
+//  Created by Alexandru Rosianu on 25/02/2017.
 //  Copyright © 2017 Aluxian. All rights reserved.
 //
 
@@ -11,13 +11,9 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    var window: NSWindow!
+    var popover: NSPopover!
     var statusItem: NSStatusItem!
     var outsideClickEventMonitor: EventMonitor!
-    
-    var shown = false
-    let mainViewController = NSStoryboard(name: "Main", bundle: nil)
-        .instantiateController(withIdentifier: "WinCtrl") as! NSWindowController
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // create the menu bar icon
@@ -25,9 +21,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.image = NSImage(named: "MenuBarIcon")
         statusItem.button?.action = #selector(togglePopover(_:))
         
+        // create the popover
+        popover = NSPopover()
+        popover.contentViewController = NSStoryboard(name: "Main", bundle: nil)
+            .instantiateController(withIdentifier: "PopoverCtrl") as! ViewController
+        
         // listen for clicks outside the popover (to close it)
         outsideClickEventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [unowned self] event in
-            if self.shown {
+            if self.popover.isShown {
                 self.closePopover(event)
             }
         }
@@ -38,7 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func togglePopover(_ sender: AnyObject?) {
-        if shown {
+        if popover.isShown {
             closePopover(sender)
         } else {
             showPopover(sender)
@@ -46,16 +47,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func showPopover(_ sender: AnyObject?) {
-        mainViewController.showWindow(self)
+        if let button = statusItem.button {
+            popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+        }
         outsideClickEventMonitor.start()
-        shown = true
     }
     
     func closePopover(_ sender: AnyObject?) {
-        mainViewController.close()
+        popover.performClose(sender)
         outsideClickEventMonitor.stop()
-        shown = false
     }
     
 }
-

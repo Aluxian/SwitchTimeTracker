@@ -6,112 +6,103 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Window Controller-->
-        <scene sceneID="AHn-jR-LTA">
-            <objects>
-                <windowController storyboardIdentifier="WinCtrl" id="lKQ-DO-gQE" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="xFg-tF-DIf">
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="249" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
-                        <connections>
-                            <binding destination="lKQ-DO-gQE" name="representedFilename" keyPath="self.window" id="a3E-tl-oYj"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="tR1-lC-YF6" kind="relationship" relationship="window.shadowedContentViewController" id="DcQ-4m-qtC"/>
-                    </connections>
-                </windowController>
-                <customObject id="Wnd-al-m7R" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-267" y="65"/>
-        </scene>
         <!--View Controller-->
-        <scene sceneID="DZv-Bb-yYJ">
+        <scene sceneID="irx-8l-D2i">
             <objects>
-                <viewController id="tR1-lC-YF6" customClass="ViewController" customModule="Switch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="bTE-zG-fCx">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <viewController storyboardIdentifier="PopoverCtrl" id="KII-XX-Ewm" customClass="ViewController" customModule="Switch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="dWF-1s-W3e">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uiy-Gq-0oG">
+                                <rect key="frame" x="73" y="168" width="37" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="iKZ-9g-tB1">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
                     </view>
                 </viewController>
-                <customObject id="oVm-xk-ZK8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="Qnv-NG-lU8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-267" y="484"/>
+            <point key="canvasLocation" x="-124" y="262"/>
         </scene>
         <!--Application-->
-        <scene sceneID="F7S-Sb-Xr9">
+        <scene sceneID="ELx-fE-jiu">
             <objects>
-                <application id="7ab-ha-pyO" sceneMemberID="viewController">
-                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="OSM-MZ-RnN">
+                <application id="Jwu-Tn-Op6" sceneMemberID="viewController">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="6if-14-b6Y">
                         <items>
-                            <menuItem title="Switch" id="KKx-zu-d6d">
+                            <menuItem title="Switch" id="hgq-mV-mCD">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Switch" systemMenu="apple" id="SXf-eE-pmK">
+                                <menu key="submenu" title="Switch" systemMenu="apple" id="WK5-nS-8bo">
                                     <items>
-                                        <menuItem title="About Switch" id="jdf-Yx-cK4">
+                                        <menuItem title="About Switch" id="x24-nn-QJn">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="UJI-kE-8pY"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="cI2-cN-UaQ"/>
-                                        <menuItem isSeparatorItem="YES" id="Cyg-TO-7oE"/>
-                                        <menuItem title="Services" id="ffd-Ms-8JW">
+                                        <menuItem isSeparatorItem="YES" id="FPB-aX-SZL"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="YlH-z1-12r"/>
+                                        <menuItem isSeparatorItem="YES" id="Tny-Pi-QF0"/>
+                                        <menuItem title="Services" id="mlD-Km-STH">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Services" systemMenu="services" id="KcM-Gc-Uft"/>
+                                            <menu key="submenu" title="Services" systemMenu="services" id="fB5-S2-2kO"/>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="K31-fK-zfI"/>
-                                        <menuItem title="Hide testWindow" keyEquivalent="h" id="LMy-RZ-DBy"/>
-                                        <menuItem title="Hide Others" keyEquivalent="h" id="Ls7-tr-jpq">
+                                        <menuItem isSeparatorItem="YES" id="UMv-SE-mve"/>
+                                        <menuItem title="Hide testWindow" keyEquivalent="h" id="gsF-EQ-SwP"/>
+                                        <menuItem title="Hide Others" keyEquivalent="h" id="1lp-yJ-08Y">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Show All" id="6FJ-MV-9RS">
+                                        <menuItem title="Show All" id="s7z-ma-ZIe">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="kCq-Gj-5LW"/>
-                                        <menuItem title="Quit testWindow" keyEquivalent="q" id="odK-bp-OEn"/>
+                                        <menuItem isSeparatorItem="YES" id="5pQ-Mt-uaB"/>
+                                        <menuItem title="Quit testWindow" keyEquivalent="q" id="f8Z-7H-xnw"/>
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="View" id="991-5k-Mas">
+                            <menuItem title="View" id="1JO-z0-osR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="View" id="dQL-Ok-qSq">
+                                <menu key="submenu" title="View" id="XiZ-g5-inl">
                                     <items>
-                                        <menuItem title="Show Toolbar" keyEquivalent="t" id="aSK-H7-ClS">
+                                        <menuItem title="Show Toolbar" keyEquivalent="t" id="Wen-Q9-HIZ">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Customize Toolbar…" id="Q98-Pk-hu8">
+                                        <menuItem title="Customize Toolbar…" id="ahb-NY-f2Z">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="XbZ-u5-vwo"/>
-                                        <menuItem title="Show Sidebar" keyEquivalent="s" id="nwu-rx-rRm">
+                                        <menuItem isSeparatorItem="YES" id="0wr-5I-qf6"/>
+                                        <menuItem title="Show Sidebar" keyEquivalent="s" id="cAe-ih-ZCo">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Enter Full Screen" keyEquivalent="f" id="6WT-5I-gSf">
+                                        <menuItem title="Enter Full Screen" keyEquivalent="f" id="Np2-Po-fLK">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                         </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Window" id="skM-MU-XWS">
+                            <menuItem title="Window" id="p2F-2F-etr">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Window" systemMenu="window" id="uvZ-ml-WBm">
+                                <menu key="submenu" title="Window" systemMenu="window" id="XsN-CL-gg3">
                                     <items>
-                                        <menuItem title="Minimize" keyEquivalent="m" id="pVK-ZT-EHG"/>
-                                        <menuItem title="Zoom" id="la1-9E-Psn">
+                                        <menuItem title="Minimize" keyEquivalent="m" id="0AO-Mz-opu"/>
+                                        <menuItem title="Zoom" id="I3r-5J-JqB">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="xfo-pm-cnv"/>
-                                        <menuItem title="Bring All to Front" id="w7a-FI-wEX">
+                                        <menuItem isSeparatorItem="YES" id="VfJ-uc-ue4"/>
+                                        <menuItem title="Bring All to Front" id="3JG-8J-dgs">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Help" id="M9A-G5-J91">
+                            <menuItem title="Help" id="E2e-j1-W87">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Help" systemMenu="help" id="zks-Gm-D6G">
+                                <menu key="submenu" title="Help" systemMenu="help" id="bQw-1d-gJp">
                                     <items>
-                                        <menuItem title="Switch Help" keyEquivalent="?" id="x9R-c8-A4m"/>
+                                        <menuItem title="Windows Help" keyEquivalent="?" id="mnZ-fv-f4P"/>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -122,9 +113,9 @@
                     </connections>
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Switch" customModuleProvider="target"/>
-                <customObject id="vhI-ea-atd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="7RL-iA-5IH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-253" y="-240"/>
+            <point key="canvasLocation" x="-124" y="7"/>
         </scene>
     </scenes>
 </document>
