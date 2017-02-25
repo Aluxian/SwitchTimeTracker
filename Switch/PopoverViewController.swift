@@ -46,8 +46,8 @@ class PopoverViewController: NSViewController {
         tasksTableView.dataSource = self
         
         // resize the popover window
-        self.view.setFrameSize(NSSize(width: self.view.frame.width,
-                                      height: popoverTopOffset + CGFloat(entries.count) * popoverItemHeight))
+//        self.view.setFrameSize(NSSize(width: self.view.frame.width,
+//                                      height: popoverTopOffset + CGFloat(entries.count) * popoverItemHeight))
         
         // bind header buttons
         headerAddTaskBtn.action = #selector(onHeaderAddTaskClick(sender:))
@@ -70,8 +70,8 @@ class PopoverViewController: NSViewController {
         tasksTableView.reloadData()
         entries.append(Entry(name: name, startedAt: NSDate(), color: NSColor(white: 0.5, alpha: 1)))
         tasksTableView.reloadData()
-        self.view.setFrameSize(NSSize(width: self.view.frame.width,
-                                      height: popoverTopOffset + CGFloat(entries.count) * popoverItemHeight))
+//        self.view.setFrameSize(NSSize(width: self.view.frame.width,
+//                                      height: popoverTopOffset + CGFloat(entries.count) * popoverItemHeight))
     }
     
     func handleSwipeAction(action: NSTableViewRowAction, index: Int) {
@@ -84,8 +84,8 @@ class PopoverViewController: NSViewController {
         isInAddTaskMode = true;
         headerAddTaskBtn.isEnabled = false
         tasksTableView.reloadData()
-        self.view.setFrameSize(NSSize(width: self.view.frame.width,
-                                      height: self.view.frame.height + popoverItemHeight))
+//        self.view.setFrameSize(NSSize(width: self.view.frame.width,
+//                                      height: self.view.frame.height + popoverItemHeight))
     }
     
 }
