@@ -11,18 +11,21 @@ import Cocoa
 
 class NewTaskCellViewController: NSViewController {
     
-    @IBOutlet weak var taskTextField: NSTextField!
-    @IBOutlet weak var addTaskBtn: NSButton!
-    
     var addTaskCallback: ((String) -> Void)?
+    var cellView: NewTaskCellView?
     
-    @IBAction func addTaskBtnClicked(_ sender: Any) {
-        addTaskCallback?(taskTextField.stringValue)
-        taskTextField.stringValue = ""
+    override func viewDidLoad() {
+        cellView = self.view as? NewTaskCellView
+        cellView?.addTaskBtn.action = #selector(onAddTaskClick(sender:))
     }
     
     override func viewWillDisappear() {
         addTaskCallback = nil
+    }
+    
+    func onAddTaskClick(sender: Any) {
+        addTaskCallback?(cellView?.taskTextField.stringValue ?? "")
+        cellView?.taskTextField.stringValue = ""
     }
     
 }

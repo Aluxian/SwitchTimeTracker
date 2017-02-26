@@ -10,21 +10,21 @@ import Cocoa
 
 class TaskCellViewController: NSViewController {
     
-    @IBOutlet weak var taskNameField: NSTextField!
-    @IBOutlet weak var taskDurationField: NSTextField!
-    
-    private var log: Log?
-    private var timer: Timer?
+    var log: Log?
+    var timer: Timer?
+    var activity: Activity?
+    var cellView: TaskCellView?
     
     override func viewDidLoad() {
-        taskDurationField.alphaValue = 0
+        cellView = self.view as? TaskCellView
+        cellView?.taskDurationField.alphaValue = 0
     }
     
     override func viewWillDisappear() {
         disable()
     }
     
-    func enable(log: Log) {
+    func enable(log: Log, activity: Activity) {
         timer?.invalidate()
         timer = nil
         timer = Timer.scheduledTimer(timeInterval: 1,
@@ -33,29 +33,22 @@ class TaskCellViewController: NSViewController {
                                      userInfo: nil,
                                      repeats: true)
         onTick()
-        taskNameField.font = NSFont.boldSystemFont(ofSize: taskNameField.font?.pointSize ?? 0)
-        NSAnimationContext.runAnimationGroup({ (context) -> Void in
-            taskDurationField.animator().alphaValue = 1
-        }, completionHandler: {})
+        cellView?.show(name: activity.name)
     }
     
     func disable() {
         timer?.invalidate()
         timer = nil
+        
+        activity = nil
         log = nil
-        taskNameField.font = NSFont.systemFont(ofSize: taskNameField.font?.pointSize ?? 0)
-        NSAnimationContext.runAnimationGroup({ (context) -> Void in
-            taskDurationField.animator().alphaValue = 0
-        }, completionHandler: {})
+        
+        cellView?.hide()
     }
     
     func onTick() {
         if log != nil {
-            let formatter = DateComponentsFormatter()
-            formatter.unitsStyle = .abbreviated
-            formatter.zeroFormattingBehavior = .dropLeading
-            let duration = -log!.startedAt.timeIntervalSinceNow
-            taskDurationField.stringValue = formatter.string(from: duration) ?? "--:--"
+            cellView?.updateDuration(startedAt: log!.startedAt)
         }
     }
     

@@ -17,10 +17,9 @@ class PopoverViewController: NSViewController {
     var currSelectedRow: Int = 0
     var isInAddTaskMode: Bool = false
     var dataSource: DataSource = DataSource()
+    var activeLog: Log?
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
         // link the table view
         tasksTableView.delegate = self
         tasksTableView.dataSource = dataSource
@@ -31,9 +30,8 @@ class PopoverViewController: NSViewController {
         // ensure the table view is focused first
         headerAddTaskBtn.refusesFirstResponder = true
         
-        // register custom cell views
-        tasksTableView.register(NSNib(nibNamed: "TaskCell", bundle: nil), forIdentifier: "TaskCell")
-        tasksTableView.register(NSNib(nibNamed: "NewTaskCell", bundle: nil), forIdentifier: "NewTaskCell")
+        // restore the last log value
+        activeLog = dataSource.logs.last
     }
     
     func createNewTask(name: String) {
@@ -66,19 +64,21 @@ extension PopoverViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         // set the NewTaskCell view
         if isInAddTaskMode && row == dataSource.activities.count {
-            if let cellView = tableView.make(withIdentifier: "NewTaskCell", owner: nil) {
-//                cellView.
-//                newTaskCellView.addTaskCallback = createNewTask
-                return cellView
+            if let ctrl = NewTaskCellViewController(nibName: "NewTaskCell", bundle: nil) {
+                return ctrl.view
             }
         }
         
         // set the TaskCell view
-        if let cellView = tableView.make(withIdentifier: "TaskCell", owner: nil) {
-//            taskCellView.taskNameField.stringValue = activities[row].name
-//            taskCellView.startedAt = NSDate()
-//            taskCellView.selected = row == currSelectedRow
-            return cellView
+        if let ctrl = TaskCellViewController(nibName: "TaskCell", bundle: nil) {
+            if row == currSelectedRow {
+                if activeLog != nil {
+                    ctrl.enable(log: activeLog!, activity: dataSource.activities[row])
+                }
+            } else {
+                ctrl.disable()
+            }
+            return ctrl.view
         }
         
         return nil
@@ -88,7 +88,7 @@ extension PopoverViewController: NSTableViewDelegate {
         // add item swipe actions
         var items = [NSTableViewRowAction]()
         
-        if row > 0 {
+        if row > 0 && row != currSelectedRow {
             items.append(NSTableViewRowAction(style: NSTableViewRowActionStyle.destructive,
                                               title: "Delete",
                                               handler: handleSwipeAction))
@@ -107,6 +107,8 @@ extension PopoverViewController: NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         // transition selection between the two rows
+        activeLog = Log(activityId: currSelectedRow, startedAt: Date())
+        dataSource.logs.append(activeLog!)
         if let tableView = notification.object as? NSTableView {
             tableView.reloadData(forRowIndexes: IndexSet([prevSelectedRow, currSelectedRow]),
                                  columnIndexes: IndexSet([0]))

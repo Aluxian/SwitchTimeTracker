@@ -11,6 +11,8 @@
 		7963D3311E62E514000C8F62 /* NewTaskCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963D3301E62E514000C8F62 /* NewTaskCellViewController.swift */; };
 		7963D3351E62E872000C8F62 /* TaskCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963D3341E62E872000C8F62 /* TaskCellViewController.swift */; };
 		7963D33B1E62F73D000C8F62 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963D33A1E62F73D000C8F62 /* DataSource.swift */; };
+		7963D33E1E62F8B2000C8F62 /* NewTaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963D33C1E62F8B2000C8F62 /* NewTaskCellView.swift */; };
+		7963D33F1E62F8B2000C8F62 /* TaskCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963D33D1E62F8B2000C8F62 /* TaskCellView.swift */; };
 		797DC7551E61509600EF2864 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DC7541E61509600EF2864 /* PopoverView.swift */; };
 		797DC7571E6196EF00EF2864 /* NewTaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 797DC7561E6196EF00EF2864 /* NewTaskCell.xib */; };
 		797DC75B1E61A02600EF2864 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 797DC75A1E61A02600EF2864 /* TaskCell.xib */; };
@@ -27,6 +29,8 @@
 		7963D3301E62E514000C8F62 /* NewTaskCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskCellViewController.swift; sourceTree = "<group>"; };
 		7963D3341E62E872000C8F62 /* TaskCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellViewController.swift; sourceTree = "<group>"; };
 		7963D33A1E62F73D000C8F62 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		7963D33C1E62F8B2000C8F62 /* NewTaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskCellView.swift; sourceTree = "<group>"; };
+		7963D33D1E62F8B2000C8F62 /* TaskCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCellView.swift; sourceTree = "<group>"; };
 		797DC7541E61509600EF2864 /* PopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
 		797DC7561E6196EF00EF2864 /* NewTaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTaskCell.xib; sourceTree = "<group>"; };
 		797DC75A1E61A02600EF2864 /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
@@ -114,8 +118,10 @@
 			children = (
 				797DC7561E6196EF00EF2864 /* NewTaskCell.xib */,
 				7963D3301E62E514000C8F62 /* NewTaskCellViewController.swift */,
+				7963D33C1E62F8B2000C8F62 /* NewTaskCellView.swift */,
 				797DC75A1E61A02600EF2864 /* TaskCell.xib */,
 				7963D3341E62E872000C8F62 /* TaskCellViewController.swift */,
+				7963D33D1E62F8B2000C8F62 /* TaskCellView.swift */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -193,10 +199,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7963D33F1E62F8B2000C8F62 /* TaskCellView.swift in Sources */,
 				799F19DA1E62DAD000D8DD66 /* Activity.swift in Sources */,
 				7963D3311E62E514000C8F62 /* NewTaskCellViewController.swift in Sources */,
 				7963D3351E62E872000C8F62 /* TaskCellViewController.swift in Sources */,
 				7963D33B1E62F73D000C8F62 /* DataSource.swift in Sources */,
+				7963D33E1E62F8B2000C8F62 /* NewTaskCellView.swift in Sources */,
 				7951C7B51E6124D400BF3E71 /* AppDelegate.swift in Sources */,
 				797DC7551E61509600EF2864 /* PopoverView.swift in Sources */,
 				79F88D971E61105100CB2820 /* PopoverViewController.swift in Sources */,

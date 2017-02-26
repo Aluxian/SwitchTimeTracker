@@ -10,10 +10,8 @@ import Cocoa
 
 class Activity {
     var name: String
-    var deleted: Bool
     
     init(name: String) {
         self.name = name
-        self.deleted = false
     }
 }

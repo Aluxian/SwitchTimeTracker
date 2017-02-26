@@ -7,10 +7,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-2" userLabel="File's Owner" customClass="NewTaskCellViewController" customModule="Switch" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="c22-O7-iKe" id="WpH-fu-wrC"/>
+            </connections>
+        </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="c22-O7-iKe" customClass="NSTableCellView">
+        <customView id="c22-O7-iKe" customClass="NewTaskCellView" customModule="Switch" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
@@ -40,21 +44,13 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
-                    <connections>
-                        <action selector="addTaskBtnClicked:" target="v9O-fe-BT8" id="0Mc-dc-TE0"/>
-                    </connections>
                 </button>
             </subviews>
             <connections>
-                <outlet property="taskTextField" destination="Ubl-is-YLW" id="SwF-cc-76i"/>
+                <outlet property="addTaskBtn" destination="Fah-r1-OsZ" id="2Dl-F9-cdF"/>
+                <outlet property="taskTextField" destination="Ubl-is-YLW" id="p3f-ca-WWc"/>
             </connections>
             <point key="canvasLocation" x="203" y="54"/>
         </customView>
-        <viewController nibName="NewTaskCell" id="v9O-fe-BT8" customClass="NewTaskCellViewController" customModule="Switch" customModuleProvider="target">
-            <connections>
-                <outlet property="addTaskBtn" destination="Fah-r1-OsZ" id="Llc-R9-ZIx"/>
-                <outlet property="taskTextField" destination="Ubl-is-YLW" id="zm3-47-ahq"/>
-            </connections>
-        </viewController>
     </objects>
 </document>
