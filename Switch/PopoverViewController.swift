@@ -35,6 +35,7 @@ class PopoverViewController: NSViewController {
     }
     
     func createNewTask(name: String) {
+        print("createNewTask name=" + name)
         isInAddTaskMode = false
         dataSource.numRowsOffset -= 1
         headerAddTaskBtn.isEnabled = true
@@ -65,6 +66,8 @@ extension PopoverViewController: NSTableViewDelegate {
         // set the NewTaskCell view
         if isInAddTaskMode && row == dataSource.activities.count {
             if let ctrl = NewTaskCellViewController(nibName: "NewTaskCell", bundle: nil) {
+                ctrl.addTaskCallback = createNewTask
+                print("got ctrl" + ctrl.className + " and view" + ctrl.view.className)
                 return ctrl.view
             }
         }
@@ -73,9 +76,12 @@ extension PopoverViewController: NSTableViewDelegate {
         if let ctrl = TaskCellViewController(nibName: "TaskCell", bundle: nil) {
             if row == currSelectedRow {
                 if activeLog != nil {
+                    print("enabling row " + String(row))
                     ctrl.enable(log: activeLog!, activity: dataSource.activities[row])
                 }
             } else {
+                print("disabling row " + String(row))
+                ctrl.activity = dataSource.activities[row]
                 ctrl.disable()
             }
             return ctrl.view

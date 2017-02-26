@@ -13,4 +13,12 @@ class NewTaskCellView: NSTableCellView {
     @IBOutlet weak var taskTextField: NSTextField!
     @IBOutlet weak var addTaskBtn: NSButton!
     
+    @IBAction func onAddClick(_ sender: Any) {
+        Swift.print("on IBACTION")
+        addTaskCallback!(taskTextField.stringValue)
+        taskTextField.stringValue = ""
+    }
+    
+    var addTaskCallback: ((String) -> Void)?
+    
 }

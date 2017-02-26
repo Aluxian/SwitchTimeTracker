@@ -16,7 +16,8 @@ class NewTaskCellViewController: NSViewController {
     
     override func viewDidLoad() {
         cellView = self.view as? NewTaskCellView
-        cellView?.addTaskBtn.action = #selector(onAddTaskClick(sender:))
+        cellView!.addTaskCallback = addTaskCallback
+//        cellView!.addTaskBtn.action = #selector(onAddTaskClick(sender:))
     }
     
     override func viewWillDisappear() {
@@ -24,6 +25,8 @@ class NewTaskCellViewController: NSViewController {
     }
     
     func onAddTaskClick(sender: Any) {
+        cellView = self.view as? NewTaskCellView
+        print("onAddTaskClick")
         addTaskCallback?(cellView?.taskTextField.stringValue ?? "")
         cellView?.taskTextField.stringValue = ""
     }

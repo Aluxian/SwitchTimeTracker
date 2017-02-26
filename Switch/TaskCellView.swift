@@ -21,7 +21,8 @@ class TaskCellView: NSTableCellView {
         }, completionHandler: {})
     }
     
-    func hide() {
+    func hide(name: String) {
+        taskNameField.stringValue = name
         taskNameField.font = NSFont.systemFont(ofSize: taskNameField.font?.pointSize ?? 0)
         NSAnimationContext.runAnimationGroup({ (context) -> Void in
             taskDurationField.animator().alphaValue = 0

@@ -16,6 +16,7 @@ class TaskCellViewController: NSViewController {
     var cellView: TaskCellView?
     
     override func viewDidLoad() {
+        print("viewDidLoad")
         cellView = self.view as? TaskCellView
         cellView?.taskDurationField.alphaValue = 0
     }
@@ -25,6 +26,9 @@ class TaskCellViewController: NSViewController {
     }
     
     func enable(log: Log, activity: Activity) {
+        self.log = log
+        self.activity = activity
+        cellView = self.view as? TaskCellView
         timer?.invalidate()
         timer = nil
         timer = Timer.scheduledTimer(timeInterval: 1,
@@ -33,20 +37,23 @@ class TaskCellViewController: NSViewController {
                                      userInfo: nil,
                                      repeats: true)
         onTick()
+        print("showing cellview " + (cellView != nil ? "celView" : "NcelView"))
         cellView?.show(name: activity.name)
     }
     
     func disable() {
+        cellView = self.view as? TaskCellView
         timer?.invalidate()
         timer = nil
         
-        activity = nil
-        log = nil
+//        activity = nil
+//        log = nil
         
-        cellView?.hide()
+        cellView?.hide(name: activity?.name ?? "noc")
     }
     
     func onTick() {
+        cellView = self.view as? TaskCellView
         if log != nil {
             cellView?.updateDuration(startedAt: log!.startedAt)
         }
