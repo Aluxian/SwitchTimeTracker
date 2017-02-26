@@ -18,6 +18,7 @@ class NewTaskCellViewController: NSViewController {
         cellView = self.view as? NewTaskCellView
         cellView!.addTaskCallback = addTaskCallback
 //        cellView!.addTaskBtn.action = #selector(onAddTaskClick(sender:))
+        cellView!.taskTextField.becomeFirstResponder()
     }
     
     override func viewWillDisappear() {

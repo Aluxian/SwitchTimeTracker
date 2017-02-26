@@ -16,6 +16,9 @@ class TaskCellView: NSTableCellView {
     func show(name: String) {
         taskNameField.stringValue = name
         taskNameField.font = NSFont.boldSystemFont(ofSize: taskNameField.font?.pointSize ?? 0)
+        if taskDurationField.alphaValue == 1 {
+            return
+        }
         NSAnimationContext.runAnimationGroup({ (context) -> Void in
             taskDurationField.animator().alphaValue = 1
         }, completionHandler: {})
@@ -24,6 +27,9 @@ class TaskCellView: NSTableCellView {
     func hide(name: String) {
         taskNameField.stringValue = name
         taskNameField.font = NSFont.systemFont(ofSize: taskNameField.font?.pointSize ?? 0)
+        if taskDurationField.alphaValue == 0 {
+            return
+        }
         NSAnimationContext.runAnimationGroup({ (context) -> Void in
             taskDurationField.animator().alphaValue = 0
         }, completionHandler: {})

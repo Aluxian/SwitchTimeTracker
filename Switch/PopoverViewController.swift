@@ -19,6 +19,8 @@ class PopoverViewController: NSViewController {
     var dataSource: DataSource = DataSource()
     var activeLog: Log?
     
+    var skipChange = false
+    
     override func viewDidLoad() {
         // link the table view
         tasksTableView.delegate = self
@@ -41,6 +43,7 @@ class PopoverViewController: NSViewController {
         headerAddTaskBtn.isEnabled = true
         dataSource.activities.append(Activity(name: name))
         tasksTableView.reloadData()
+        skipChange = false
     }
     
     func handleSwipeAction(action: NSTableViewRowAction, index: Int) {
@@ -52,6 +55,8 @@ class PopoverViewController: NSViewController {
     }
     
     func onHeaderAddTaskClick(sender: Any) {
+        print("header ADD")
+        skipChange = true
         isInAddTaskMode = true;
         dataSource.numRowsOffset += 1
         headerAddTaskBtn.isEnabled = false
@@ -67,7 +72,7 @@ extension PopoverViewController: NSTableViewDelegate {
         if isInAddTaskMode && row == dataSource.activities.count {
             if let ctrl = NewTaskCellViewController(nibName: "NewTaskCell", bundle: nil) {
                 ctrl.addTaskCallback = createNewTask
-                print("got ctrl" + ctrl.className + " and view" + ctrl.view.className)
+//                print("got ctrl" + ctrl.className + " and view" + ctrl.view.className)
                 return ctrl.view
             }
         }
@@ -94,7 +99,7 @@ extension PopoverViewController: NSTableViewDelegate {
         // add item swipe actions
         var items = [NSTableViewRowAction]()
         
-        if row > 0 && row != currSelectedRow {
+        if row > 0 && row != currSelectedRow && row < dataSource.activities.count {
             items.append(NSTableViewRowAction(style: NSTableViewRowActionStyle.destructive,
                                               title: "Delete",
                                               handler: handleSwipeAction))
@@ -104,14 +109,20 @@ extension PopoverViewController: NSTableViewDelegate {
     }
     
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        if skipChange {
+            return false
+        }
         // store the new index
         prevSelectedRow = currSelectedRow
         currSelectedRow = row
-        print("should sel indeX: " + String(row))
+        print("should sel indeX: " + String(row) + " yes")
         return true
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
+        if skipChange {
+            return
+        }
         // transition selection between the two rows
         activeLog = Log(activityId: currSelectedRow, startedAt: Date())
         dataSource.logs.append(activeLog!)

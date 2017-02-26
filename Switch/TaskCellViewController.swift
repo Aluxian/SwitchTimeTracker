@@ -16,7 +16,6 @@ class TaskCellViewController: NSViewController {
     var cellView: TaskCellView?
     
     override func viewDidLoad() {
-        print("viewDidLoad")
         cellView = self.view as? TaskCellView
         cellView?.taskDurationField.alphaValue = 0
     }
@@ -37,7 +36,6 @@ class TaskCellViewController: NSViewController {
                                      userInfo: nil,
                                      repeats: true)
         onTick()
-        print("showing cellview " + (cellView != nil ? "celView" : "NcelView"))
         cellView?.show(name: activity.name)
     }
     
