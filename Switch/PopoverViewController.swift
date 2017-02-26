@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PopoverViewController.swift
 //  Switch
 //
 //  Created by Alexandru Rosianu on 24/02/2017.
@@ -8,46 +8,22 @@
 
 import Cocoa
 
-class Entry {
-    var name: String
-    var startedAt: NSDate
-    var color: NSColor
-    
-    init(name: String, startedAt: NSDate, color: NSColor) {
-        self.name = name
-        self.startedAt = startedAt
-        self.color = color
-    }
-}
-
 class PopoverViewController: NSViewController {
     
     @IBOutlet weak var tasksTableView: NSTableView!
     @IBOutlet weak var headerAddTaskBtn: NSButton!
     
-    let popoverTopOffset: CGFloat = 31
-    let popoverItemHeight: CGFloat = 51
-    
-    var prevSelectedRow: Int = -1
+    var prevSelectedRow: Int = 0
+    var currSelectedRow: Int = 0
     var isInAddTaskMode: Bool = false
-    
-    var entries = [
-        Entry(name: "Nothing", startedAt: NSDate(), color: NSColor(red: 0.58, green: 0.72, blue: 0.75, alpha: 1)),
-        Entry(name: "Programming", startedAt: NSDate(), color: NSColor(red: 0.58, green: 0.72, blue: 0.75, alpha: 1)),
-        Entry(name: "Studying", startedAt: NSDate(), color: NSColor(red: 0.57, green: 0.77, blue: 0.64, alpha: 1)),
-        Entry(name: "Reading", startedAt: NSDate(), color: NSColor(red: 0.54, green: 0.41, blue: 0.53, alpha: 1))
-    ]
+    var dataSource: DataSource = DataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // link the table view
         tasksTableView.delegate = self
-        tasksTableView.dataSource = self
-        
-        // resize the popover window
-//        self.view.setFrameSize(NSSize(width: self.view.frame.width,
-//                                      height: popoverTopOffset + CGFloat(entries.count) * popoverItemHeight))
+        tasksTableView.dataSource = dataSource
         
         // bind header buttons
         headerAddTaskBtn.action = #selector(onHeaderAddTaskClick(sender:))
@@ -60,43 +36,27 @@ class PopoverViewController: NSViewController {
         tasksTableView.register(NSNib(nibNamed: "NewTaskCell", bundle: nil), forIdentifier: "NewTaskCell")
     }
     
-    func deleteEntryAt(index: Int) {
-        print("deleted" + String(index))
-    }
-    
     func createNewTask(name: String) {
         isInAddTaskMode = false
+        dataSource.numRowsOffset -= 1
         headerAddTaskBtn.isEnabled = true
+        dataSource.activities.append(Activity(name: name))
         tasksTableView.reloadData()
-        entries.append(Entry(name: name, startedAt: NSDate(), color: NSColor(white: 0.5, alpha: 1)))
-        tasksTableView.reloadData()
-//        self.view.setFrameSize(NSSize(width: self.view.frame.width,
-//                                      height: popoverTopOffset + CGFloat(entries.count) * popoverItemHeight))
     }
     
     func handleSwipeAction(action: NSTableViewRowAction, index: Int) {
+        // delete
         if action.title == "Delete" {
-            deleteEntryAt(index: index)
+            tasksTableView.removeRows(at: IndexSet([index]), withAnimation: [.slideUp, .effectFade])
+            dataSource.activities.remove(at: index)
         }
     }
     
     func onHeaderAddTaskClick(sender: Any) {
         isInAddTaskMode = true;
+        dataSource.numRowsOffset += 1
         headerAddTaskBtn.isEnabled = false
         tasksTableView.reloadData()
-//        self.view.setFrameSize(NSSize(width: self.view.frame.width,
-//                                      height: self.view.frame.height + popoverItemHeight))
-    }
-    
-}
-
-extension PopoverViewController: NSTableViewDataSource {
-    
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        if isInAddTaskMode {
-            return entries.count + 1
-        }
-        return entries.count
     }
     
 }
@@ -105,21 +65,20 @@ extension PopoverViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         // set the NewTaskCell view
-        if isInAddTaskMode && row == entries.count {
-            if let newTaskCellView = tableView.make(withIdentifier: "NewTaskCell", owner: nil) as? NewTaskCellView {
-                newTaskCellView.addTaskAction = createNewTask
-                return newTaskCellView
+        if isInAddTaskMode && row == dataSource.activities.count {
+            if let cellView = tableView.make(withIdentifier: "NewTaskCell", owner: nil) {
+//                cellView.
+//                newTaskCellView.addTaskCallback = createNewTask
+                return cellView
             }
         }
         
         // set the TaskCell view
-        if let taskCellView = tableView.make(withIdentifier: "TaskCell", owner: nil) as? TaskCellView {
-            taskCellView.taskDurationField.alphaValue = 0
-            taskCellView.taskNameField.stringValue = entries[row].name
-            taskCellView.taskColorBox.fillColor = entries[row].color
-            taskCellView.startedAt = NSDate()
-            taskCellView.selected = row == tableView.selectedRow
-            return taskCellView
+        if let cellView = tableView.make(withIdentifier: "TaskCell", owner: nil) {
+//            taskCellView.taskNameField.stringValue = activities[row].name
+//            taskCellView.startedAt = NSDate()
+//            taskCellView.selected = row == currSelectedRow
+            return cellView
         }
         
         return nil
@@ -127,21 +86,29 @@ extension PopoverViewController: NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
         // add item swipe actions
-        return [
-            NSTableViewRowAction(style: NSTableViewRowActionStyle.destructive, title: "Delete", handler: handleSwipeAction)
-        ]
+        var items = [NSTableViewRowAction]()
+        
+        if row > 0 {
+            items.append(NSTableViewRowAction(style: NSTableViewRowActionStyle.destructive,
+                                              title: "Delete",
+                                              handler: handleSwipeAction))
+        }
+        
+        return items
     }
     
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-        // store this so its row can be unselected
-        prevSelectedRow = tableView.selectedRow
+        // store the new index
+        prevSelectedRow = currSelectedRow
+        currSelectedRow = row
+        print("should sel indeX: " + String(row))
         return true
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-        // transition selection between two rows
+        // transition selection between the two rows
         if let tableView = notification.object as? NSTableView {
-            tableView.reloadData(forRowIndexes: IndexSet([prevSelectedRow, tableView.selectedRow]),
+            tableView.reloadData(forRowIndexes: IndexSet([prevSelectedRow, currSelectedRow]),
                                  columnIndexes: IndexSet([0]))
         }
     }

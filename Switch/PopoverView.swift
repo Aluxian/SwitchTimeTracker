@@ -1,5 +1,5 @@
 //
-//  PopoverController.swift
+//  PopoverView.swift
 //  Switch
 //
 //  Created by Alexandru Rosianu on 25/02/2017.

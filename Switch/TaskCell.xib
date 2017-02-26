@@ -10,18 +10,19 @@
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="c22-O7-iKe" customClass="TaskCellView" customModule="Switch" customModuleProvider="target">
+        <customView id="c22-O7-iKe" customClass="NSTableCellView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <box fixedFrame="YES" boxType="custom" borderWidth="0.0" title="ColorBar" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8yX-zx-hVT">
-                    <rect key="frame" x="0.0" y="0.0" width="5" height="50"/>
+                <box fixedFrame="YES" boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Zj3-JR-ltL">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" ambiguous="YES" id="hYj-CB-i3e">
-                        <rect key="frame" x="0.0" y="0.0" width="5" height="50"/>
+                    <view key="contentView" ambiguous="YES" id="3iG-zx-VXp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
-                    <color key="fillColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="borderColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                    <color key="fillColor" red="0.99019607843137258" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </box>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XpI-Ma-iVy">
                     <rect key="frame" x="15" y="16" width="193" height="17"/>
@@ -42,11 +43,12 @@
                     </textFieldCell>
                 </textField>
             </subviews>
-            <connections>
-                <outlet property="taskColorBox" destination="8yX-zx-hVT" id="FGg-dy-0tg"/>
-                <outlet property="taskDurationField" destination="E5S-OA-aIn" id="tvz-f5-xWd"/>
-                <outlet property="taskNameField" destination="XpI-Ma-iVy" id="lIr-cf-mW6"/>
-            </connections>
         </customView>
+        <viewController nibName="TaskCell" id="doS-FR-D6a" customClass="TaskCellViewController" customModule="Switch" customModuleProvider="target">
+            <connections>
+                <outlet property="taskDurationField" destination="E5S-OA-aIn" id="xqx-VA-lHO"/>
+                <outlet property="taskNameField" destination="XpI-Ma-iVy" id="Jwn-EE-Zz0"/>
+            </connections>
+        </viewController>
     </objects>
 </document>
